@@ -1,0 +1,21 @@
+Import everything
+
+model = load model saved after training
+
+
+function prediction(predicted_number):
+predicted number is from 0-26 so you add that to 65 (ascii for a) and make that a character to get our transcribed character
+
+function keras_predict(model,image):
+Make the image frame a numpy array (and put in data variable) that we can feed to our model by calling model.predict(data). This will give us a list with what character it thinks the image is along with a probability (most probable first which is why i take [0] in line 19). 
+
+function crop_image():
+We don't need the entire image just the region with the hand. For this we draw a square on the users screen inside which they need to keep the hand (our region of interest (ROI)). Just crop out the roi.
+
+function main():
+while true take image input then crop out our ROI by calling crop_image, then perform preprocessing by converting to grayscale and blurring (to reduce noisy details). Then resize to 28*28 and pass to our keras_predict function
+
+Now make a rectangle around the ROI on the users screen and print the predicted character.
+
+then an if statement to quit if q is pressed
+
